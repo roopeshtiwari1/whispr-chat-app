@@ -44,6 +44,7 @@ io.on("connection", (socket) => {
 
   subscriber.on("message", (channel, message) => {
     const parsedMessage = JSON.parse(message)
+    console.log("subscriber main enter", parsedMessage)
     const receiverSocketId = getReceiverSocketId(parsedMessage.receiverId);
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", parsedMessage);
